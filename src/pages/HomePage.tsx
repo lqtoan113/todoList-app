@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FilterBar from '../components/FilterBar';
 import TodoForm from '../components/TodoForm';
@@ -10,13 +10,13 @@ const HomePage = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<string>('all');
   const [currentTodo, setCurrentTodo] = useState<Todo | null>(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
 
   useEffect(() => {
+    console.log(todos);
     fakeApi.getTodos().then(setTodos);
   }, []); // Mảng phụ thuộc rỗng, chỉ chạy khi component mount
-  
 
   const handleAddTodo = (title: string, decription: string) => {
     const newTodo: Todo = {
@@ -25,12 +25,12 @@ const HomePage = () => {
       decription,
       completed: false,
     };
-  
+
     fakeApi.addTodo(newTodo).then((todo) => {
       setTodos((prevTodos) => [...prevTodos, todo]);  // Cập nhật trực tiếp vào state
     });
   };
-  
+
 
   // Hàm cập nhật Todo
   const handleUpdateTodo = (title: string, decription: string) => {
@@ -64,7 +64,7 @@ const HomePage = () => {
     if (filter === 'active') return !todo.completed;
     return true;
   });
- 
+
   // Hàm xử lý khi click vào todo để điều hướng tới trang About
   const handleTodoClick = (todo: Todo) => {
     navigate(`/about/${todo.id}`, { state: { todo } });
@@ -77,9 +77,9 @@ const HomePage = () => {
 
       <h1>To do List</h1>
       <TodoForm
-        onSubmit={handleAddTodo}  
-        onUpdate={handleUpdateTodo}  
-        todoToEdit={currentTodo ? { title: currentTodo.title, decription: currentTodo.decription } : undefined} 
+        onSubmit={handleAddTodo}
+        onUpdate={handleUpdateTodo}
+        todoToEdit={currentTodo ? { title: currentTodo.title, decription: currentTodo.decription } : undefined}
       />
       <FilterBar setFilter={setFilter} />
       <TodoList
@@ -87,7 +87,7 @@ const HomePage = () => {
         onToggle={handleToggleTodo}
         onDelete={handleDeleteTodo}
         onTodoClick={handleTodoClick}
-        onEdit={(todo: Todo) => setCurrentTodo(todo)}  
+        onEdit={(todo: Todo) => setCurrentTodo(todo)}
       />
     </div>
   );
