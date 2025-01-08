@@ -12,14 +12,12 @@ const HomePage = () => {
   const [currentTodo, setCurrentTodo] = useState<Todo | null>(null);
   const navigate = useNavigate(); 
 
+
   useEffect(() => {
-
-    console.log(todos);
     fakeApi.getTodos().then(setTodos);
+  }, []); // Mảng phụ thuộc rỗng, chỉ chạy khi component mount
+  
 
-  }, [todos]);
-
-  // Hàm thêm Todo mới
   const handleAddTodo = (title: string, decription: string) => {
     const newTodo: Todo = {
       id: Date.now(),
@@ -29,9 +27,10 @@ const HomePage = () => {
     };
   
     fakeApi.addTodo(newTodo).then((todo) => {
-      setTodos([...todos, todo]);
+      setTodos((prevTodos) => [...prevTodos, todo]);  // Cập nhật trực tiếp vào state
     });
   };
+  
 
   // Hàm cập nhật Todo
   const handleUpdateTodo = (title: string, decription: string) => {

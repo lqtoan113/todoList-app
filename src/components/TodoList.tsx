@@ -14,18 +14,19 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, onDelete, onEdit, 
 
     return (
         <div>
-            {todos.map((todo) => (
-                <TodoItem
-                    key={todo.id}
-                    todo={todo}
-                    onToggle={onToggle}
-                    onDelete={onDelete}
-                    onEdit={onEdit}
-                    onTodoClick={onTodoClick}  // Truyền prop onTodoClick vào TodoItem
-                />
-            ))}
+          {todos.map((todo) => (
+            <TodoItem
+              key={todo.id}  // Sử dụng `todo.id` làm key duy nhất
+              todo={todo}
+              onToggle={onToggle}
+              onDelete={onDelete}
+              onEdit={onEdit}
+              onTodoClick={onTodoClick}  // Truyền các hàm xử lý vào TodoItem
+            />
+          ))}
         </div>
-    );
+      );
+      
 };
 
 export default TodoList;
