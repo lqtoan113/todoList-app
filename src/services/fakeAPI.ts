@@ -1,6 +1,13 @@
 import { Todo } from '../interfaces/todo';
 
-let todos: Todo[]=[];
+let todos: Todo[] = [
+  {
+    id: 0, 
+    title: "learn react",
+    decription: "try learn react",
+    completed: true
+  },
+];
 
 export const fakeApi = {
   getTodos: async (): Promise<Todo[]> => {

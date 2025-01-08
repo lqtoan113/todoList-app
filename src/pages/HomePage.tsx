@@ -12,12 +12,15 @@ const HomePage = () => {
   const [currentTodo, setCurrentTodo] = useState<Todo | null>(null);
   const navigate = useNavigate();
 
-  console.log(todos,'Out useEffect');
-  console.log(fakeApi.getTodos(),'fakeApi Out useEffect');
+
+  console.log(todos,'Out useEffect',fakeApi.getTodos(),'fakeApi Out useEffect');
+
+
   useEffect(() => {
-    console.log(todos,'In useEffect');
-    console.log(fakeApi.getTodos(),'fakeApi In useEffect');
+    
     fakeApi.getTodos().then(setTodos);
+    console.log(todos,'In useEffect',fakeApi.getTodos(),'fakeApi In useEffect');
+
   }, []); // Mảng phụ thuộc rỗng, chỉ chạy khi component mount
 
   const handleAddTodo = (title: string, decription: string) => {
