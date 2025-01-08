@@ -11,6 +11,7 @@ interface TodoListProps {
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, onDelete, onEdit, onTodoClick }) => {
+
     return (
         <div>
             {todos.map((todo) => (

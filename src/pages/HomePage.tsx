@@ -11,9 +11,13 @@ const HomePage = () => {
   const [filter, setFilter] = useState<string>('all');
   const [currentTodo, setCurrentTodo] = useState<Todo | null>(null);
   const navigate = useNavigate(); 
+debugger;
   useEffect(() => {
+
+    console.log(todos);
     fakeApi.getTodos().then(setTodos);
-  }, []);
+
+  }, [todos]);
 
   // Hàm thêm Todo mới
   const handleAddTodo = (title: string, decription: string) => {
@@ -23,6 +27,7 @@ const HomePage = () => {
       decription,
       completed: false,
     };
+  
     fakeApi.addTodo(newTodo).then((todo) => {
       setTodos([...todos, todo]);
     });
@@ -60,7 +65,7 @@ const HomePage = () => {
     if (filter === 'active') return !todo.completed;
     return true;
   });
-
+ 
   // Hàm xử lý khi click vào todo để điều hướng tới trang About
   const handleTodoClick = (todo: Todo) => {
     navigate(`/about/${todo.id}`, { state: { todo } });

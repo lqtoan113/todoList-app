@@ -23,9 +23,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onDelete, onTodoCli
       >
         {todo.title}
       </span>
-      
-      <button onClick={() => onDelete(todo.id)}>Xóa</button>
-      <button onClick={() => onEdit(todo)}>Sửa</button> {/* Nút sửa */}
+      <button onClick={() => onDelete(todo.id)}>Delete</button>
+      <button onClick={() => onEdit(todo)}>Edit</button> {/* Nút sửa */}
     </div>
   );
 };
