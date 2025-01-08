@@ -11,7 +11,7 @@ const HomePage = () => {
   const [filter, setFilter] = useState<string>('all');
   const [currentTodo, setCurrentTodo] = useState<Todo | null>(null);
   const navigate = useNavigate(); 
-debugger;
+
   useEffect(() => {
 
     console.log(todos);
